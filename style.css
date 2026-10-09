@@ -1,0 +1,1573 @@
+/* =========================================
+   1. GLOBAL SETTINGS
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #172943;
+    --panel: #203754;
+    --panel-light: #2a4463;
+
+    --text: #ffffff;
+    --muted: #d0dced;
+
+    --cyan: #65eee4;
+    --blue: #74bdff;
+    --purple: #c4adff;
+    --green: #82edbd;
+    --red: #ff91a2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 95px;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            ellipse at 10% 5%,
+            rgba(65, 172, 255, 0.22),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 90% 35%,
+            rgba(166, 110, 255, 0.20),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(65, 220, 205, 0.10),
+            transparent 45%
+        ),
+        var(--bg);
+
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button,
+a,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(102, 229, 223, 0.6);
+    outline-offset: 3px;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+.page-width {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+.ambient {
+    display: none;
+}
+
+
+/* =========================================
+   2. NAVIGATION BAR
+========================================= */
+
+.navbar {
+    min-height: 78px;
+    padding: 14px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background: rgba(8, 17, 33, 0.90);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(142, 169, 209, 0.14);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 19px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: rgba(102, 229, 223, 0.12);
+    color: var(--cyan);
+    border: 1px solid rgba(102, 229, 223, 0.25);
+}
+
+.ai {
+    color: var(--cyan);
+}
+
+.logo small {
+    display: block;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+
+    color: var(--muted);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 11px;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--cyan);
+}
+
+.login-button {
+    padding: 10px 15px;
+
+    border: 1px solid #344b68;
+    border-radius: 30px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.login-button:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+
+/* =========================================
+   3. HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 480px;
+    padding: 65px 0 45px;
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 35px;
+}
+
+.tag,
+.section-label {
+    color: var(--cyan);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.tag {
+    display: inline-block;
+
+    padding: 8px 12px;
+
+    background: rgba(102, 229, 223, 0.05);
+    border: 1px solid rgba(102, 229, 223, 0.2);
+    border-radius: 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin: 25px 0 18px;
+
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(38px, 4.5vw, 59px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: var(--cyan);
+}
+
+.hero-content > p {
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.9;
+
+    max-width: 590px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 12px 17px;
+
+    border-radius: 10px;
+    border: none;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-button {
+    background: linear-gradient(
+        105deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple)
+    );
+
+    color: #081629;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.secondary-button {
+    border: 1px solid #344b68;
+    color: var(--text);
+}
+
+.secondary-button:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.hero-note {
+    margin-top: 22px;
+
+    color: var(--muted);
+    font-size: 9px;
+}
+
+
+/* =========================================
+   4. HERO ILLUSTRATION
+========================================= */
+
+.hero-visual {
+    height: 340px;
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+}
+
+.glow {
+    width: 230px;
+    height: 230px;
+
+    position: absolute;
+
+    border-radius: 50%;
+    filter: blur(65px);
+}
+
+.glow-one {
+    background: rgba(44, 157, 202, 0.25);
+}
+
+.glow-two {
+    background: rgba(128, 76, 220, 0.12);
+}
+
+.shield {
+    font-size: 130px;
+
+    z-index: 1;
+
+    filter: drop-shadow(
+        0 15px 35px rgba(40, 190, 220, 0.25)
+    );
+
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-card {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+
+    border: 1px solid #2d4565;
+    border-radius: 12px;
+
+    background: rgba(17, 31, 54, 0.96);
+}
+
+.floating-card > span:first-child {
+    font-size: 25px;
+}
+
+.floating-card strong {
+    display: block;
+    font-size: 10px;
+}
+
+.floating-card small {
+    display: block;
+    color: var(--muted);
+    font-size: 8px;
+}
+
+.card-one {
+    top: 35px;
+    right: 0;
+}
+
+.card-two {
+    bottom: 35px;
+    left: 0;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================================
+   5. FEATURE CARDS
+========================================= */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    margin-bottom: 75px;
+}
+
+.feature-card {
+    padding: 22px;
+
+    background: rgba(17, 29, 51, 0.85);
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.feature-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.blue {
+    background: rgba(99, 184, 255, 0.12);
+}
+
+.purple {
+    background: rgba(180, 154, 255, 0.12);
+}
+
+.green {
+    background: rgba(118, 230, 181, 0.12);
+}
+
+.feature-card h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   6. COMMON SECTION STYLES
+========================================= */
+
+.section {
+    margin-bottom: 80px;
+}
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+.section-heading h2,
+.impact h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(27px, 3vw, 36px);
+    letter-spacing: -0.8px;
+
+    margin: 9px 0;
+}
+
+.section-heading p,
+.impact > p {
+    max-width: 700px;
+
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.panel {
+    min-width: 0;
+    padding: 23px;
+
+    background: linear-gradient(
+        150deg,
+        rgba(20, 34, 57, 0.96),
+        rgba(13, 25, 44, 0.98)
+    );
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.panel h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   7. JOB SCANNER
+========================================= */
+
+.scanner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.panel label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+textarea,
+input[type="text"],
+input[type="url"] {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #344a67;
+    border-radius: 10px;
+
+    background: #0a1628;
+    color: var(--text);
+
+    outline: none;
+}
+
+textarea {
+    min-height: 170px;
+    resize: vertical;
+
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+textarea:focus,
+input:focus {
+    border-color: var(--cyan);
+}
+
+textarea::placeholder,
+input::placeholder {
+    color: #7186a0;
+}
+
+.divider {
+    margin: 20px 0;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--muted);
+    font-size: 9px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    flex: 1;
+    height: 1px;
+
+    background: var(--border);
+}
+
+.upload-area {
+    min-height: 150px;
+
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    text-align: center;
+
+    padding: 20px;
+
+    border: 1px dashed #47718a;
+    border-radius: 12px;
+
+    background: rgba(102, 229, 223, 0.04);
+
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--cyan);
+}
+
+.upload-icon {
+    font-size: 30px;
+}
+
+.upload-area strong {
+    font-size: 12px;
+}
+
+.upload-area span,
+.upload-area small {
+    font-size: 9px;
+    color: var(--muted);
+}
+
+#jobFile {
+    display: none;
+}
+
+.file-name {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.privacy-note,
+.disclaimer {
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   8. RESULTS PANEL
+========================================= */
+
+.results-panel {
+    text-align: center;
+}
+
+.score-circle {
+    width: 125px;
+    height: 125px;
+
+    margin: 24px auto;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            var(--cyan) 0deg,
+            #273a54 0deg
+        );
+
+    border: 8px solid #1b2c45;
+}
+
+.score-circle strong {
+    display: block;
+    font-size: 30px;
+}
+
+.score-circle small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.findings {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.findings h4 {
+    font-size: 12px;
+}
+
+.findings ul {
+    padding-left: 20px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.recommendation {
+    margin-top: 20px;
+    padding: 15px;
+
+    border: 1px solid rgba(102, 229, 223, 0.2);
+    border-radius: 12px;
+
+    background: rgba(102, 229, 223, 0.05);
+
+    text-align: left;
+}
+
+.recommendation strong {
+    color: var(--cyan);
+    font-size: 11px;
+}
+
+.recommendation p {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+
+/* =========================================
+   9. SKILLUP CAREER CARDS
+========================================= */
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.career-card {
+    display: flex;
+    flex-direction: column;
+
+    padding: 19px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    background: var(--panel);
+
+    transition: 0.2s;
+}
+
+.career-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan);
+}
+
+.career-icon {
+    font-size: 33px;
+    margin-bottom: 12px;
+}
+
+.difficulty {
+    color: var(--cyan);
+    font-size: 8px;
+    margin-bottom: 9px;
+}
+
+.career-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+}
+
+.career-card p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin-bottom: 18px;
+}
+
+.skill-tags span {
+    padding: 5px 7px;
+
+    color: #b9cce1;
+    background: #1a2c46;
+
+    border-radius: 5px;
+
+    font-size: 8px;
+}
+
+.career-button {
+    display: inline-block;
+    margin-top: auto;
+
+    padding: 10px;
+
+    text-align: center;
+
+    border: 1px solid #344b68;
+    border-radius: 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.career-button:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+
+/* =========================================
+   10. JAVA ROADMAP
+========================================= */
+
+.roadmap {
+    margin-top: 22px;
+}
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: 35px 1fr auto;
+    align-items: start;
+    gap: 12px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: rgba(102, 229, 223, 0.1);
+    color: var(--cyan);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.roadmap-item h4 {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.roadmap-item p {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.roadmap-item a {
+    color: var(--cyan);
+    font-size: 10px;
+}
+
+
+/* =========================================
+   11. VERIFICATION CHECKLIST
+========================================= */
+
+.checklist label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid var(--border);
+
+    cursor: pointer;
+}
+
+.checklist input {
+    accent-color: var(--cyan);
+}
+
+.checklist span {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   12. SCAM REPORT FORM
+========================================= */
+
+.report-form {
+    max-width: 750px;
+}
+
+.report-form label {
+    margin-top: 15px;
+}
+
+.report-form button {
+    margin-top: 18px;
+}
+
+
+/* =========================================
+   13. SDG IMPACT
+========================================= */
+
+.impact {
+    padding: 30px;
+
+    border: 1px solid #2c4f68;
+    border-radius: 18px;
+
+    background: linear-gradient(
+        110deg,
+        rgba(24, 66, 85, 0.4),
+        rgba(30, 35, 69, 0.55)
+    );
+}
+
+.sdg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.sdg-grid article {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 15px;
+
+    background: rgba(8, 19, 36, 0.45);
+
+    border: 1px solid #314b63;
+    border-radius: 10px;
+}
+
+.sdg-grid strong {
+    color: var(--cyan);
+    font-size: 16px;
+}
+
+.sdg-grid span {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+
+/* =========================================
+   14. FOOTER
+========================================= */
+
+.footer {
+    padding: 25px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    border-top: 1px solid var(--border);
+}
+
+.footer p,
+.footer > a:last-child {
+    color: var(--muted);
+    font-size: 9px;
+}
+
+.footer > a:last-child {
+    color: var(--cyan);
+}
+
+
+/* =========================================
+   15. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .career-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+
+    .navbar {
+        position: relative;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        order: 3;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        height: 280px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .scanner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sdg-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .roadmap-item {
+        grid-template-columns: 30px 1fr;
+    }
+
+    .roadmap-item a {
+        grid-column: 2;
+    }
+
+    .footer {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .page-width {
+        width: 92%;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .career-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sdg-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-buttons .primary-button,
+    .hero-buttons .secondary-button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* ==========================================
+   SCAMSHIELD AI — NEW LAYOUT
+   Larger fonts + left sidebar navigation
+========================================== */
+
+
+/* 1. GLOBAL FONT SETTINGS */
+
+body {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+}
+
+
+/* 2. LEFT SIDEBAR */
+
+.navbar {
+    position: fixed !important;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 260px;
+    height: 100vh;
+
+    padding: 28px 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    gap: 35px;
+
+    background: #111f36;
+
+    border-right: 1px solid #344b68;
+    border-bottom: none;
+
+    z-index: 100;
+}
+
+
+/* LOGO */
+
+.logo {
+    font-size: 21px !important;
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+}
+
+
+/* 3. STACK NAVIGATION VERTICALLY */
+
+.nav-links {
+    display: flex !important;
+
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    gap: 10px !important;
+
+    width: 100%;
+}
+
+
+/* NAVIGATION OPTIONS */
+
+.nav-links a {
+    display: block;
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    font-size: 16px !important;
+
+    color: #d4e0ef;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    transition: 0.25s;
+}
+
+
+/* HOVER EFFECT */
+
+.nav-links a:hover {
+    color: #66e5df;
+
+    background: rgba(102, 229, 223, 0.10);
+
+    border-color: rgba(102, 229, 223, 0.25);
+
+    transform: translateX(4px);
+}
+
+
+/* SIGN-IN BUTTON */
+
+.login-button {
+    display: block;
+
+    margin-top: auto;
+
+    padding: 14px;
+
+    text-align: center;
+
+    font-size: 15px !important;
+
+    border: 1px solid #4a6688;
+    border-radius: 10px;
+}
+
+.login-button:hover {
+    background: rgba(102, 229, 223, 0.10);
+}
+
+
+/* 4. MOVE WEBSITE CONTENT AWAY FROM SIDEBAR */
+
+main {
+    margin-left: 260px;
+}
+
+.footer {
+    margin-left: 260px;
+    padding: 25px 4%;
+}
+
+
+/* 5. CENTER AND SPACE THE CONTENT */
+
+.hero {
+    width: 92%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding-top: 75px;
+    padding-bottom: 65px;
+
+    gap: 35px;
+}
+
+
+/* MAIN HEADLINE */
+
+h1 {
+    font-size: 64px !important;
+    line-height: 1.18 !important;
+    letter-spacing: -1.5px !important;
+}
+
+
+/* HERO DESCRIPTION */
+
+.hero-content > p {
+    font-size: 18px !important;
+    line-height: 1.9 !important;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons a {
+    font-size: 15px !important;
+    padding: 15px 20px;
+}
+
+
+/* 6. FEATURE CARDS */
+
+.features {
+    width: 92%;
+    max-width: 1400px;
+
+    margin: 0 auto 75px;
+
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 25px;
+}
+
+.feature-card h3 {
+    font-size: 20px !important;
+}
+
+.feature-card p {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+}
+
+
+/* 7. SECTION HEADINGS */
+
+.section {
+    width: 92%;
+    max-width: 1400px;
+
+    margin: 0 auto 85px;
+}
+
+.section-heading h2 {
+    font-size: 38px !important;
+    line-height: 1.3 !important;
+}
+
+.section-heading p {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+}
+
+.section-label {
+    font-size: 12px !important;
+}
+
+
+/* 8. SCANNER CARDS */
+
+.panel {
+    padding: 28px;
+}
+
+.panel h3 {
+    font-size: 23px !important;
+}
+
+.panel p {
+    font-size: 16px;
+}
+
+.panel label {
+    font-size: 15px !important;
+}
+
+textarea,
+input,
+select {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+}
+
+textarea {
+    min-height: 200px;
+}
+
+.upload-area strong {
+    font-size: 16px !important;
+}
+
+.upload-area span,
+.upload-area small {
+    font-size: 13px !important;
+}
+
+
+/* 9. CAREER CARDS */
+
+.career-card {
+    padding: 23px;
+}
+
+.career-card h3 {
+    font-size: 19px !important;
+}
+
+.career-card p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+}
+
+.career-button {
+    padding: 13px;
+    font-size: 14px !important;
+}
+
+.skill-tags span {
+    font-size: 11px !important;
+}
+
+
+/* 10. LEARNING ROADMAP */
+
+.roadmap-item {
+    padding: 22px 0;
+    gap: 16px;
+}
+
+.roadmap-item h4 {
+    font-size: 17px !important;
+}
+
+.roadmap-item p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+}
+
+.roadmap-item a {
+    font-size: 14px !important;
+}
+
+
+/* 11. VERIFICATION CHECKLIST */
+
+.checklist span {
+    font-size: 15px !important;
+}
+
+
+/* 12. SDG CARDS */
+
+.sdg-grid article {
+    padding: 20px;
+}
+
+.sdg-grid strong {
+    font-size: 20px !important;
+}
+
+.sdg-grid span {
+    font-size: 14px !important;
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1000px) {
+
+    /* Restore top navigation on smaller screens */
+
+    .navbar {
+        position: relative !important;
+
+        width: 100%;
+        height: auto;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+
+        padding: 15px 4%;
+        gap: 15px;
+    }
+
+    .nav-links {
+        order: 3;
+
+        flex-direction: row !important;
+        flex-wrap: wrap;
+
+        gap: 8px !important;
+    }
+
+    .nav-links a {
+        width: auto;
+        padding: 9px 10px;
+        font-size: 13px !important;
+    }
+
+    .login-button {
+        margin-top: 0;
+        margin-left: auto;
+    }
+
+    main,
+    .footer {
+        margin-left: 0;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 48px !important;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .scanner-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 38px !important;
+    }
+
+    .section-heading h2 {
+        font-size: 29px !important;
+    }
+
+    .hero-content > p,
+    .feature-card p,
+    .section-heading p {
+        font-size: 16px !important;
+    }
+
+    .career-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* =====================================
+   ScamShield AI — Download Report Button
+   ===================================== */
+
+.report-download {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0 14px;
+}
+
+#downloadReportButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 14px 24px;
+
+    background: linear-gradient(
+        135deg,
+        #66e5df,
+        #b49aff
+    );
+
+    color: #091224;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(102, 229, 223, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+/* Hover effect */
+
+#downloadReportButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 24px rgba(102, 229, 223, 0.25);
+
+    filter: brightness(1.08);
+}
+
+/* Click effect */
+
+#downloadReportButton:active {
+    transform: translateY(0);
+}
+
+/* Keyboard accessibility */
+
+#downloadReportButton:focus-visible {
+    outline: 2px solid #66e5df;
+    outline-offset: 4px;
+}

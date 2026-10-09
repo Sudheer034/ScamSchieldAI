@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ScamShield AI | Employment Safety</title>
+
+    <!-- Connect the CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="#home" class="logo">
+            <span class="logo-icon">🛡️</span>
+
+            <span>
+                ScamShield<span class="ai">AI</span>
+                <small>EMPLOYMENT SAFETY</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="#home">Home</a>
+            <a href="#scanner">Job Scanner</a>
+            <a href="#skillup">Skillup</a>
+            <a href="#verification">Verify</a>
+            <a href="#reports">Scam Reports</a>
+
+        </nav>
+
+        <a href="login.html" class="login-button">
+            Sign In ↗
+        </a>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <span class="tag">
+                    AI · CYBERSECURITY · FUTURE OF JOBS
+                </span>
+
+                <h1>
+                    Your Next Job Should Be an
+                    <span>Opportunity,</span>
+                    Not a Risk.
+                </h1>
+
+                <p>
+                    Detect suspicious job offers, understand recruitment
+                    warning signs, and build the skills needed for your
+                    future career with ScamShield AI.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#scanner" class="primary-button">
+                        Analyze a Job Offer →
+                    </a>
+
+                    <a href="#skillup" class="secondary-button">
+                        Explore Skillup
+                    </a>
+
+                </div>
+
+                <p class="hero-note">
+                    ✓ Clear explanations · Safer decisions · Career guidance
+                </p>
+
+            </div>
+
+
+            <!-- Decorative visual -->
+
+            <div class="hero-visual">
+
+                <div class="glow glow-one"></div>
+                <div class="glow glow-two"></div>
+
+                <div class="shield">
+                    🛡️
+                </div>
+
+                <div class="floating-card card-one">
+                    <span>🔎</span>
+
+                    <div>
+                        <strong>Job Analysis</strong>
+                        <small>Review warning signs</small>
+                    </div>
+
+                </div>
+
+                <div class="floating-card card-two">
+                    <span>🎯</span>
+
+                    <div>
+                        <strong>Skillup</strong>
+                        <small>Build your future</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features">
+
+            <article class="feature-card">
+                <div class="feature-icon blue">🔎</div>
+
+                <h3>Job Scam Detection</h3>
+
+                <p>
+                    Examine recruitment messages for common
+                    warning signs.
+                </p>
+            </article>
+
+
+            <article class="feature-card">
+                <div class="feature-icon purple">🧠</div>
+
+                <h3>Risk Assessment</h3>
+
+                <p>
+                    Understand suspicious indicators and
+                    recommended safety checks.
+                </p>
+            </article>
+
+
+            <article class="feature-card">
+                <div class="feature-icon green">🚀</div>
+
+                <h3>Career Learning</h3>
+
+                <p>
+                    Explore career paths and learn the skills
+                    employers may require.
+                </p>
+            </article>
+
+        </section>
+
+
+        <!-- ================= JOB SCANNER ================= -->
+
+        <section id="scanner" class="section">
+
+            <div class="section-heading">
+
+                <span class="section-label">01 / JOB SCANNER</span>
+
+                <h2>Check Before You Commit.</h2>
+
+                <p>
+                    Paste a suspicious job advertisement or upload
+                    a downloaded job offer for review.
+                </p>
+
+            </div>
+
+
+            <div class="scanner-grid">
+
+                <!-- Scanner input -->
+
+                <div class="panel">
+
+                    <h3>📄 Job Offer Scanner</h3>
+
+                    <p class="muted">
+                        Enter the advertisement or upload a file.
+                    </p>
+
+
+                    <label for="jobText">
+                        Paste Job Advertisement
+                    </label>
+
+                    <textarea
+                        id="jobText"
+                        placeholder="Paste your job advertisement or recruitment email here..."
+                    ></textarea>
+
+
+                    <div class="divider">
+                        <span>OR UPLOAD A FILE</span>
+                    </div>
+
+
+                    <label for="jobFile" class="upload-area">
+
+                        <span class="upload-icon">📤</span>
+
+                        <strong>Upload Job Offer or Email</strong>
+
+                        <span>
+                            Click to browse your computer
+                        </span>
+
+                        <small>
+                            PDF, DOCX, TXT, EML, HTML
+                        </small>
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="jobFile"
+                        accept=".pdf,.docx,.txt,.eml,.html,.htm"
+                    >
+
+
+                    <p id="fileName" class="file-name">
+                        No file selected
+                    </p>
+
+
+                    <button
+                        type="button"
+                        id="analyzeButton"
+                        class="primary-button full-width"
+                    >
+                        Analyze Job Offer →
+                    </button>
+
+                    <p class="privacy-note">
+                        🔒 Use sample or redacted content.
+                        Do not upload sensitive personal information.
+                    </p>
+
+                </div>
+
+
+                <!-- Results panel -->
+
+                <div class="panel results-panel">
+
+                    <span class="section-label">
+                        ANALYSIS RESULTS
+                    </span>
+
+                    <h3>Risk Assessment</h3>
+
+                    <div class="score-circle">
+
+                        <div>
+                            <strong id="riskScore">--</strong>
+                            <small>Risk Score</small>
+                        </div>
+
+                    </div>
+
+                    <h4 id="riskLabel">
+                        Waiting for analysis
+                    </h4>
+
+                    <p id="riskDescription" class="muted">
+                        Your analysis results will appear here.
+                    </p>
+
+
+                    <div class="findings">
+
+                        <h4>Warning Signs</h4>
+
+                        <ul id="warningList">
+                            <li>No analysis performed yet.</li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="recommendation">
+
+                        <strong>Safety Recommendation</strong>
+
+                        <p id="recommendationText">
+                            Verify the employer through an official
+                            website before accepting an offer.
+                        </p>
+
+                    </div>
+                    <!-- Download Scan Report -->
+
+<div class="report-download">
+
+    <button
+        type="button"
+        id="downloadReportButton"
+        class="career-button"
+    >
+        📄 Download Scan Report
+    </button>
+
+</div>
+
+                    <small class="disclaimer">
+                        This is a prototype interface. A real scam
+                        analysis engine will be added later.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SKILLUP ================= -->
+
+        <section id="skillup" class="section">
+
+            <div class="section-heading">
+
+                <span class="section-label">02 / SKILLUP</span>
+
+                <h2>Build Skills for Your Next Career.</h2>
+
+                <p>
+                    Explore career paths, understand required skills,
+                    and access learning resources.
+                </p>
+
+            </div>
+
+
+            <div class="career-grid">
+
+                <!-- Java Developer -->
+
+                <article class="career-card">
+
+                    <div class="career-icon">☕</div>
+
+                    <span class="difficulty">Beginner to Intermediate</span>
+
+                    <h3>Full Stack Java Developer</h3>
+
+                    <p>
+                        Learn Java, databases, backend development,
+                        frontend technologies, and Spring Boot.
+                    </p>
+
+                    <div class="skill-tags">
+                        <span>Java</span>
+                        <span>SQL</span>
+                        <span>Spring Boot</span>
+                    </div>
+
+                    <a href="#java-roadmap" class="career-button">
+                        Explore Career →
+                    </a>
+
+                </article>
+
+
+                <!-- Python Developer -->
+
+                <article class="career-card">
+
+                    <div class="career-icon">🐍</div>
+
+                    <span class="difficulty">Beginner</span>
+
+                    <h3>Python Developer</h3>
+
+                    <p>
+                        Learn Python programming, automation,
+                        APIs, and application development.
+                    </p>
+
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>Git</span>
+                        <span>APIs</span>
+                    </div>
+
+                    <a
+                        href="https://docs.python.org/3/tutorial/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="career-button"
+                    >
+                        Start Learning ↗
+                    </a>
+
+                </article>
+
+
+                <!-- AI Engineer -->
+
+                <article class="career-card">
+
+                    <div class="career-icon">🤖</div>
+
+                    <span class="difficulty">Intermediate</span>
+
+                    <h3>AI / ML Engineer</h3>
+
+                    <p>
+                        Explore Python, statistics, machine learning,
+                        and model evaluation.
+                    </p>
+
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>AI</span>
+                        <span>ML</span>
+                    </div>
+
+                    <a
+                        href="https://scikit-learn.org/stable/getting_started.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="career-button"
+                    >
+                        Start Learning ↗
+                    </a>
+
+                </article>
+
+
+                <!-- Cybersecurity -->
+
+                <article class="career-card">
+
+                    <div class="career-icon">🔐</div>
+
+                    <span class="difficulty">Beginner to Intermediate</span>
+
+                    <h3>Cybersecurity Analyst</h3>
+
+                    <p>
+                        Learn networking, security fundamentals,
+                        log analysis, and defensive practices.
+                    </p>
+
+                    <div class="skill-tags">
+                        <span>Networking</span>
+                        <span>Linux</span>
+                        <span>Security</span>
+                    </div>
+
+                    <a
+                        href="https://tryhackme.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="career-button"
+                    >
+                        Start Learning ↗
+                    </a>
+
+                </article>
+
+            </div>
+
+
+            <!-- Java learning roadmap -->
+
+            <div id="java-roadmap" class="panel roadmap">
+
+                <span class="section-label">
+                    FEATURED LEARNING ROADMAP
+                </span>
+
+                <h3>Full Stack Java Developer</h3>
+
+                <p class="muted">
+                    Follow this suggested learning sequence to prepare
+                    for junior full-stack development opportunities.
+                </p>
+                <!-- Learning Progress Tracker -->
+
+<div class="roadmap-progress">
+
+    <div class="roadmap-progress-top">
+        <span id="roadmap-progress-text">
+            0 of 4 steps completed
+        </span>
+
+        <span id="roadmap-progress-percent">
+            0%
+        </span>
+    </div>
+
+    <div
+        class="roadmap-progress-track"
+        id="roadmap-progress-bar"
+        role="progressbar"
+        aria-label="Java roadmap completion"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+    >
+        <div
+            class="roadmap-progress-fill"
+            id="roadmap-progress-fill"
+        ></div>
+    </div>
+
+</div>
+
+
+                <div class="roadmap-item">
+
+                    <span class="step-number">01</span>
+
+                    <div>
+                        <h4>HTML, CSS and JavaScript</h4>
+
+                        <p>
+                            Learn webpage structure, styling,
+                            responsive layouts, and browser interactions.
+                        </p>
+                    </div>
+                    <label class="roadmap-check">
+                        <input
+                        type="checkbox"
+                        class="roadmap-step-check"
+                        data-step="1"
+                        >
+                        <span>Completed</span>
+                    </label>
+
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Learn_web_development"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn ↗
+                    </a>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <span class="step-number">02</span>
+
+                    <div>
+                        <h4>Core Java and OOP</h4>
+
+                        <p>
+                            Understand variables, classes, objects,
+                            inheritance, exceptions, and collections.
+                        </p>
+                    </div>
+                    <label class="roadmap-check">
+    <input
+        type="checkbox"
+        class="roadmap-step-check"
+        data-step="2"
+    >
+    <span>Completed</span>
+</label>
+
+                    <a
+                        href="https://dev.java/learn/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn ↗
+                    </a>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <span class="step-number">03</span>
+
+                    <div>
+                        <h4>SQL and Databases</h4>
+
+                        <p>
+                            Practice queries, tables, joins,
+                            and relational database fundamentals.
+                        </p>
+                    </div>
+                    <label class="roadmap-check">
+    <input
+        type="checkbox"
+        class="roadmap-step-check"
+        data-step="3"
+    >
+    <span>Completed</span>
+</label>
+
+                    <a
+                        href="https://www.postgresql.org/docs/current/tutorial-sql.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn ↗
+                    </a>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <span class="step-number">04</span>
+
+                    <div>
+                        <h4>Spring Boot and REST APIs</h4>
+
+                        <p>
+                            Learn backend services, HTTP requests,
+                            and API development.
+                        </p>
+                    </div>
+                    <label class="roadmap-check">
+    <input
+        type="checkbox"
+        class="roadmap-step-check"
+        data-step="4"
+    >
+    <span>Completed</span>
+</label>
+
+                    <a
+                        href="https://spring.io/guides"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VERIFICATION ================= -->
+
+        <section id="verification" class="section">
+
+            <div class="section-heading">
+
+                <span class="section-label">03 / SAFETY CHECKLIST</span>
+
+                <h2>Verify Before You Apply.</h2>
+
+                <p>
+                    Practical checks to perform before sharing
+                    information or accepting an offer.
+                </p>
+
+            </div>
+
+
+            <div class="panel checklist">
+
+                <label>
+                    <input type="checkbox">
+                    <span>Check the employer's official website</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Confirm the vacancy on the official careers page</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Verify the recruiter's identity independently</span>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    <span>Review any payment or sensitive-data requests</span>
+                </label>
+
+                <p class="muted">
+                    Completing this checklist does not guarantee
+                    that an employer or offer is legitimate.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SCAM REPORTS ================= -->
+
+        <section id="reports" class="section">
+
+            <div class="section-heading">
+
+                <span class="section-label">04 / COMMUNITY AWARENESS</span>
+
+                <h2>Report a Suspicious Job Offer.</h2>
+
+                <p>
+                    Record an advertisement that you believe needs
+                    further review.
+                </p>
+
+            </div>
+
+
+            <form id="reportForm" class="panel report-form">
+
+                <label for="employerName">
+                    Employer Name
+                </label>
+
+                <input
+                    type="text"
+                    id="employerName"
+                    placeholder="Enter employer name"
+                >
+
+
+                <label for="reportDetails">
+                    Why Does It Seem Suspicious?
+                </label>
+
+                <textarea
+                    id="reportDetails"
+                    placeholder="Describe the warning signs..."
+                    required
+                ></textarea>
+
+
+                <button type="button" class="primary-button">
+                    Save Demo Report
+                </button>
+
+                <p class="muted">
+                    This frontend form does not send reports to
+                    authorities or job platforms.
+                </p>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= SDG SECTION ================= -->
+
+        <section class="section impact">
+
+            <span class="section-label">OUR PURPOSE</span>
+
+            <h2>Technology With a Purpose.</h2>
+
+            <p>
+                Promoting employment safety, education,
+                and responsible technology use.
+            </p>
+
+
+            <div class="sdg-grid">
+
+                <article>
+                    <strong>SDG 4</strong>
+                    <span>Quality Education</span>
+                </article>
+
+                <article>
+                    <strong>SDG 8</strong>
+                    <span>Decent Work</span>
+                </article>
+
+                <article>
+                    <strong>SDG 10</strong>
+                    <span>Reduced Inequalities</span>
+                </article>
+
+                <article>
+                    <strong>SDG 16</strong>
+                    <span>Peace and Justice</span>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <a href="#home" class="logo">
+            🛡️ ScamShield<span class="ai">AI</span>
+        </a>
+
+        <p>
+            AI-assisted guidance. Human judgment always matters.
+        </p>
+
+        <a href="#home">Back to top ↑</a>
+
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.13.0/mammoth.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
