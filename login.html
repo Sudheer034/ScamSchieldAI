@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Login or create an account with ScamShield AI."
+    >
+
+    <title>Login / Register | ScamShield AI</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- Main Authentication Container -->
+
+    <main class="auth-container">
+
+        <!-- Brand Section -->
+
+        <header class="auth-header">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon">🛡️</span>
+
+                <span>
+                    ScamShield <strong>AI</strong>
+                </span>
+            </a>
+
+            <p class="brand-description">
+                Your safety in the digital job market.
+            </p>
+
+        </header>
+
+
+        <!-- Authentication Card -->
+
+        <section class="auth-card">
+
+            <!-- Form Switch Buttons -->
+
+            <div class="auth-tabs">
+
+                <button
+                    type="button"
+                    id="showLogin"
+                    class="auth-tab active"
+                >
+                    Login
+                </button>
+
+                <button
+                    type="button"
+                    id="showRegister"
+                    class="auth-tab"
+                >
+                    Register
+                </button>
+
+            </div>
+
+
+            <!-- Login Form -->
+
+            <div id="loginPanel">
+
+                <div class="form-heading">
+
+                    <h1>Welcome Back</h1>
+
+                    <p>
+                        Sign in to continue your career safety journey.
+                    </p>
+
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggleLoginPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                    >
+                        Login to Your Account →
+                    </button>
+
+                    <p
+                        id="loginMessage"
+                        class="form-message"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+                <p class="switch-message">
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        class="text-button"
+                        id="loginToRegister"
+                    >
+                        Create one
+                    </button>
+                </p>
+
+            </div>
+
+
+            <!-- Registration Form -->
+
+            <div id="registerPanel" hidden>
+
+                <div class="form-heading">
+
+                    <h1>Create Your Account</h1>
+
+                    <p>
+                        Join ScamShield AI and build a safer career.
+                    </p>
+
+                </div>
+
+                <form id="registerForm">
+
+                    <div class="form-group">
+
+                        <label for="registerName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerPassword">
+                            Create Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                placeholder="At least 8 characters"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggleRegisterPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Re-enter your password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggleConfirmPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                    >
+                        Create Account →
+                    </button>
+
+                    <p
+                        id="registerMessage"
+                        class="form-message"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+                <p class="switch-message">
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        class="text-button"
+                        id="registerToLogin"
+                    >
+                        Login
+                    </button>
+                </p>
+
+            </div>
+            <!-- Two-Step Email Verification -->
+
+<div id="otpPanel" hidden>
+
+    <div class="form-heading">
+
+        <h1 id="otpHeading">Verify Your Email</h1>
+
+        <p id="otpDescription">
+            Enter the six-digit verification code sent to your email.
+        </p>
+
+    </div>
+
+    <form id="otpForm">
+
+        <div class="form-group">
+
+            <label for="otpCode">
+                Verification Code
+            </label>
+
+            <input
+                type="text"
+                id="otpCode"
+                name="otp"
+                placeholder="Enter 6-digit code"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                pattern="[0-9]{6}"
+                minlength="6"
+                maxlength="6"
+                required
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            class="auth-submit"
+            id="verifyOtpButton"
+        >
+            Verify and Continue →
+        </button>
+
+        <p
+            id="otpMessage"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+        ></p>
+
+    </form>
+
+    <p class="switch-message">
+
+        <button
+            type="button"
+            id="otpBackButton"
+            class="text-button"
+        >
+            ← Back to Login
+        </button>
+
+    </p>
+
+</div>
+
+        </section>
+
+
+        <!-- Footer -->
+
+        <footer class="auth-footer">
+
+            <p>
+                Protected by ScamShield AI
+            </p>
+
+            <a href="index.html">
+                ← Back to Home
+            </a>
+
+            <small>
+                Account authentication must be configured before
+                this interface can provide real account security.
+            </small>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>

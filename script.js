@@ -802,3 +802,481 @@ opportunity independently.
 
 }
 }
+// ==========================================
+// 11. Secure Logout
+// ==========================================
+
+const logoutButton = document.getElementById("logoutButton");
+
+if (logoutButton) {
+
+    logoutButton.addEventListener("click", async function () {
+
+        const originalText = logoutButton.textContent;
+
+        logoutButton.disabled = true;
+        logoutButton.textContent = "Logging out...";
+
+        try {
+
+            // Obtain a CSRF token from Flask
+
+            const tokenResponse = await fetch("/api/csrf", {
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+
+            if (!tokenResponse.ok) {
+                throw new Error("Could not initialize the security token.");
+            }
+
+            const tokenData = await tokenResponse.json();
+
+            // Request logout from the Flask backend
+
+            const response = await fetch("/api/logout", {
+
+                method: "POST",
+
+                credentials: "same-origin",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": tokenData.csrfToken
+                },
+
+                body: JSON.stringify({})
+
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Logout failed."
+                );
+            }
+
+            // Return to Login after the server clears the session
+
+            window.location.replace("/login");
+
+        } catch (error) {
+
+            console.error("Logout error:", error);
+
+            alert(
+                "Unable to log out. Please try refreshing the page."
+            );
+
+            logoutButton.disabled = false;
+            logoutButton.textContent = originalText;
+
+        }
+
+    });
+// ==========================================
+// 12. Display the Logged-In User's Name
+// ==========================================
+
+const userGreeting = document.getElementById("userGreeting"); 
+const currentUserName = document.getElementById("currentUserName");
+const signInButton = document.getElementById("signInButton");
+
+async function loadLoggedInUserGreeting() {
+
+    // Stop if the greeting elements are not present.
+
+    if (!userGreeting || !currentUserName) {
+        return;
+    }
+
+    try {
+
+        // Ask Flask for the current user's information.
+
+        const response = await fetch("/api/me", {
+            method: "GET",
+            credentials: "same-origin",
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not retrieve the user profile.");
+        }
+
+        const data = await response.json();
+
+        // Display the greeting only for an authenticated user.
+
+     if (
+    data.authenticated &&
+    data.user &&
+    typeof data.user.name === "string"
+) {
+
+    // Display the logged-in user's name.
+    currentUserName.textContent = data.user.name;
+    userGreeting.hidden = false;
+
+    // Hide Sign In when the user is authenticated.
+    if (signInButton) {
+        signInButton.hidden = true;
+    }
+
+} else {
+
+    // Hide the personalized greeting.
+    userGreeting.hidden = true;
+
+    // Show Sign In when the user is not authenticated.
+    if (signInButton) {
+        signInButton.hidden = false;
+    }
+
+}
+
+    } catch (error) {
+
+        console.error("User greeting error:", error);
+
+        userGreeting.hidden = true;
+
+    }
+}
+
+
+// Load the user's name when the page opens.
+
+loadLoggedInUserGreeting();
+}
+// ==========================================
+// 13. Resume & Job Match Feature
+// ==========================================
+
+const resumeMatchFileInput = document.getElementById("resumeFile");
+const resumeMatchFileName = document.getElementById("resumeFileName");
+const resumeMatchJobText = document.getElementById("jobEmailText");
+
+const resumeMatchButton = document.getElementById(
+    "analyzeResumeMatchButton"
+);
+
+const resumeMatchStatus = document.getElementById(
+    "resumeMatchStatus"
+);
+
+const resumeMatchScore = document.getElementById(
+    "resumeMatchScore"
+);
+
+const matchedSkillsList = document.getElementById(
+    "matchedSkillsList"
+);
+
+const missingSkillsList = document.getElementById(
+    "missingSkillsList"
+);
+
+const resumeRecommendations = document.getElementById(
+    "resumeRecommendations"
+);
+
+
+// Display the selected resume filename.
+
+if (resumeMatchFileInput) {
+
+    resumeMatchFileInput.addEventListener("change", function () {
+
+        const file = resumeMatchFileInput.files[0];
+
+        if (resumeMatchFileName) {
+            resumeMatchFileName.textContent = file
+                ? "Selected: " + file.name
+                : "No resume selected";
+        }
+
+    });
+
+}
+
+
+// Helper: Display lists safely without inserting HTML from the server.
+
+function displayResumeSkillList(listElement, items, emptyMessage) {
+
+    if (!listElement) {
+        return;
+    }
+
+    listElement.replaceChildren();
+
+    if (!Array.isArray(items) || items.length === 0) {
+
+        const item = document.createElement("li");
+
+        item.textContent = emptyMessage;
+
+        listElement.appendChild(item);
+
+        return;
+    }
+
+    items.forEach(function (skill) {
+
+        const item = document.createElement("li");
+
+        item.textContent = skill;
+
+        listElement.appendChild(item);
+
+    });
+
+}
+
+
+// Run the resume comparison.
+
+if (resumeMatchButton) {
+
+    resumeMatchButton.addEventListener("click", async function () {
+
+        const resumeFile = resumeMatchFileInput
+            ? resumeMatchFileInput.files[0]
+            : null;
+
+        const jobDescription =
+    (resumeMatchJobText?.value.trim() ||
+    document.getElementById("jobText")?.value.trim() ||
+    "");
+
+        // Validate the inputs.
+
+        if (!resumeFile) {
+
+            alert("Please upload your resume first.");
+
+            return;
+        }
+
+        if (!jobDescription) {
+
+            alert("Please paste a job description or recruitment email.");
+
+            resumeMatchJobText.focus();
+
+            return;
+        }
+
+        // Validate file extension.
+
+        const extension = resumeFile.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+        const allowedExtensions = ["pdf", "docx", "txt"];
+
+        if (!allowedExtensions.includes(extension)) {
+
+            alert("Please upload a PDF, DOCX, or TXT resume.");
+
+            return;
+        }
+
+        // Validate file size. The backend has its own checks too.
+
+        if (resumeFile.size > 5 * 1024 * 1024) {
+
+            alert("Please upload a resume smaller than 5 MB.");
+
+            return;
+        }
+
+        const originalButtonText = "Compare Resume & Job →";
+
+        resumeMatchButton.disabled = true;
+
+        resumeMatchButton.textContent = "Analyzing Resume...";
+
+        if (resumeMatchStatus) {
+            resumeMatchStatus.textContent =
+                "Extracting resume text and comparing recognized skills...";
+        }
+
+        if (resumeMatchScore) {
+            resumeMatchScore.textContent = "--%";
+        }
+
+        try {
+
+            // Step 1: Obtain a CSRF security token from Flask.
+
+            const tokenResponse = await fetch("/api/csrf", {
+                method: "GET",
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+
+            const tokenContentType =
+                tokenResponse.headers.get("content-type") || "";
+
+            if (
+                !tokenResponse.ok ||
+                !tokenContentType.includes("application/json")
+            ) {
+                throw new Error(
+                    "Could not initialize security. Open ScamShield AI through http://127.0.0.1:5000/."
+                );
+            }
+
+            const tokenData = await tokenResponse.json();
+
+            if (!tokenData.csrfToken) {
+
+                throw new Error(
+                    "The security token is missing. Refresh the page and try again."
+                );
+
+            }
+
+            // Step 2: Prepare the uploaded file and job description.
+
+            const formData = new FormData();
+
+            formData.append("resumeFile", resumeFile);
+
+            formData.append("jobDescription", jobDescription);
+
+
+            // Step 3: Send the comparison request to Flask.
+
+            const response = await fetch("/api/resume-match", {
+
+                method: "POST",
+
+                credentials: "same-origin",
+
+                headers: {
+                    "X-CSRFToken": tokenData.csrfToken
+                },
+
+                body: formData
+
+            });
+
+            const responseContentType =
+                response.headers.get("content-type") || "";
+
+            if (!responseContentType.includes("application/json")) {
+
+                throw new Error(
+                    "The server returned an unexpected response. Make sure Flask is running and you are not using Live Server."
+                );
+
+            }
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message || "The resume comparison failed."
+                );
+
+            }
+
+
+            // Step 4: Display the match score.
+
+            if (resumeMatchScore) {
+                resumeMatchScore.textContent =
+                    data.matchScore + "%";
+            }
+
+
+            // Step 5: Display matching skills.
+
+            displayResumeSkillList(
+                matchedSkillsList,
+                data.matchedSkills,
+                "No matching skills were identified."
+            );
+
+
+            // Step 6: Display skills not found in the resume.
+
+            displayResumeSkillList(
+                missingSkillsList,
+                data.missingSkills,
+                "No skill gaps were identified by the keyword matcher."
+            );
+
+
+            // Step 7: Display recommendations.
+
+            if (resumeRecommendations) {
+
+                resumeRecommendations.textContent =
+                    Array.isArray(data.recommendations)
+                        ? data.recommendations.join("\n\n")
+                        : "No recommendations were returned.";
+
+                resumeRecommendations.style.whiteSpace = "pre-line";
+
+            }
+
+
+            // Step 8: Explain what the score means.
+
+          if (resumeMatchStatus) {
+
+    if (data.method === "openai_ai") {
+
+        const summary = typeof data.summary === "string"
+            ? data.summary
+            : "";
+
+        resumeMatchStatus.textContent =
+            "✅ AI-powered analysis completed. " + summary;
+
+        resumeMatchStatus.style.whiteSpace = "pre-line";
+
+    } else {
+
+        resumeMatchStatus.textContent =
+            "ℹ️ Keyword-based comparison completed. AI analysis was unavailable, so these results use predefined skill-matching rules.";
+
+    }
+
+}   
+
+        } catch (error) {
+
+            console.error("Resume comparison error:", error);
+
+            if (resumeMatchStatus) {
+
+                resumeMatchStatus.textContent =
+                    error.message || "Unable to compare the resume.";
+
+            }
+
+            if (resumeMatchScore) {
+                resumeMatchScore.textContent = "--%";
+            }
+
+        } finally {
+
+            // Restore the button whether the request succeeds or fails.
+
+            resumeMatchButton.disabled = false;
+
+            resumeMatchButton.textContent = originalButtonText;
+
+        }
+
+    });
+
+}

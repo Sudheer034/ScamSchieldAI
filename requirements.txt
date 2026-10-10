@@ -1,0 +1,8 @@
+Flask
+Flask-WTF
+Flask-Limiter
+python-dotenv
+pypdf
+python-docx
+openai
+gunicorn

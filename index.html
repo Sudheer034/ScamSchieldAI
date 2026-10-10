@@ -24,20 +24,33 @@
                 ScamShield<span class="ai">AI</span>
                 <small>EMPLOYMENT SAFETY</small>
             </span>
-        </a>
+              </a>
+
+        <!-- Logged-in User Greeting -->
+
+        <div class="user-greeting" id="userGreeting" hidden>
+            Welcome back,
+            <strong id="currentUserName">there</strong>!
+            👋
+        </div>
 
         <nav class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#scanner">Job Scanner</a>
+    <a href="#skillup">Skillup</a>
+    <a href="#verification">Verify</a>
+    <a href="#reports">Scam Reports</a>
 
-            <a href="#home">Home</a>
-            <a href="#scanner">Job Scanner</a>
-            <a href="#skillup">Skillup</a>
-            <a href="#verification">Verify</a>
-            <a href="#reports">Scam Reports</a>
+    <button
+        type="button"
+        id="logoutButton"
+        class="nav-logout"
+    >
+        ⇥ Logout
+    </button>
 
-        </nav>
-
-        <a href="login.html" class="login-button">
-            Sign In ↗
+</nav>
+        <a  href="/login" class="login-button" id="signInButton">
         </a>
 
     </header>
@@ -330,6 +343,209 @@
 
 
         <!-- ================= SKILLUP ================= -->
+         <!-- =====================================
+     AI RESUME & JOB MATCH
+     ===================================== -->
+
+<section id="resume-match" class="section">
+
+    <!-- Section Heading -->
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            03 / AI RESUME MATCH
+        </span>
+
+        <h2>Does Your Resume Match the Job?</h2>
+
+        <p>
+            Compare your resume with a recruitment email or job
+            advertisement to identify matching skills, skill gaps,
+            and opportunities to improve your career readiness.
+        </p>
+
+    </div>
+
+
+    <div class="scanner-grid">
+
+        <!-- Resume and Job Description Input -->
+
+        <div class="panel">
+
+            <h3>📄 Resume & Job Details</h3>
+
+            <p class="muted">
+                Upload your resume and provide the job description
+                you want to evaluate.
+            </p>
+
+
+            <!-- Resume Upload -->
+
+            <label for="resumeFile">
+                Upload Your Resume
+            </label>
+
+            <label for="resumeFile" class="upload-area">
+
+                <span class="upload-icon">📤</span>
+
+                <strong>Select Your Resume</strong>
+
+                <span>
+                    Click to browse your computer
+                </span>
+
+                <small>
+                    PDF, DOCX or TXT
+                </small>
+
+            </label>
+
+            <input
+                type="file"
+                id="resumeFile"
+                class="resume-file-input"
+                accept=".pdf,.docx,.txt"
+            >
+
+            <p
+                id="resumeFileName"
+                class="file-name"
+                aria-live="polite"
+            >
+                No resume selected
+            </p>
+
+
+            <!-- Job Description / Email -->
+
+            <div class="divider">
+                <span>JOB DESCRIPTION OR EMAIL</span>
+            </div>
+
+
+            <label for="jobEmailText">
+                Paste Job Advertisement or Recruitment Email
+            </label>
+
+            <textarea
+                id="jobEmailText"
+                placeholder="Paste the job description or recruitment email here..."
+            ></textarea>
+
+
+            <!-- Comparison Button -->
+
+            <button
+                type="button"
+                id="analyzeResumeMatchButton"
+                class="primary-button full-width"
+            >
+                Compare Resume & Job →
+            </button>
+
+
+            <p class="privacy-note">
+                🔒 Use sample or redacted resumes during testing.
+                Remove personal information that is not needed
+                for the comparison.
+            </p>
+
+        </div>
+
+
+        <!-- Resume Match Results -->
+
+        <div
+            class="panel"
+            id="resumeMatchResults"
+            aria-live="polite"
+        >
+
+            <h3>📊 Resume Match Report</h3>
+
+            <p class="muted" id="resumeMatchStatus">
+                Your comparison results will appear here after
+                you provide a resume and job description.
+            </p>
+
+
+            <!-- Overall Match -->
+
+            <div class="match-summary">
+
+                <span class="section-label">
+                    JOB COMPATIBILITY
+                </span>
+
+                <h2 id="resumeMatchScore">
+                    --%
+                </h2>
+
+                <p class="muted">
+                    Estimated alignment between the supplied
+                    resume and the job requirements.
+                </p>
+
+            </div>
+
+
+            <!-- Matching Skills -->
+
+            <div class="findings">
+
+                <h4>✅ Matching Skills</h4>
+
+                <ul id="matchedSkillsList">
+                    <li>Results will appear after analysis.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- Missing or Unclear Skills -->
+
+            <div class="findings">
+
+                <h4>📚 Skills to Develop</h4>
+
+                <ul id="missingSkillsList">
+                    <li>Results will appear after analysis.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- Recommendations -->
+
+            <div class="recommendation">
+
+                <strong>Career Recommendations</strong>
+
+                <p id="resumeRecommendations">
+                    Complete an analysis to receive personalized
+                    suggestions for improving your resume and
+                    planning your learning journey.
+                </p>
+
+            </div>
+
+
+            <small class="disclaimer">
+                A resume match score is an estimate, not a hiring
+                decision. Missing keywords do not necessarily
+                mean you lack a skill. Resume matching does not
+                establish whether an employer is trustworthy.
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
 
         <section id="skillup" class="section">
 
@@ -814,8 +1030,7 @@
         </a>
 
         <p>
-            TEAM ID: TS-072
-            TEAM NAME: Vetons
+            AI-assisted guidance. Human judgment always matters.
         </p>
 
         <a href="#home">Back to top ↑</a>

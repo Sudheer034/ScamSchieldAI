@@ -1,0 +1,10 @@
+SECRET_KEY=f4ebebfdb4d1a916e24da8683c060858e101ed28aaf8b3d2fc4ed4e442512005
+COOKIE_SECURE=0
+
+MAIL_SERVER=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=sandeshdurgam123@gmail.com
+MAIL_PASSWORD=fzshsqdmfjamotjg
+MAIL_FROM=sandeshdurgam123@gmail.com
+OPENAI_API_KEY=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
+OPENAI_MODEL=gpt-5-mini
